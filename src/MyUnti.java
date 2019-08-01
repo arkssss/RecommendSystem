@@ -43,22 +43,22 @@ public class MyUnti {
 
     /*
         余弦相似度
-        余弦形似度不管 Rank, 只涉及用户的观看过的想同的 电影的数目
-        计算方法如下 ：
-        Nums(xMovies 交 yMovies) / Sqrt(Nums(xMovies) * Nums(yMovies))
+        余弦形似度不管 Rank, 只涉及传入向量的数量比
+        计算方法如下：
+        Nums(xList 交 yList) / Sqrt(Nums(xList) * Nums(yList))
     */
-    static double cosSim(ArrayList<String> xMovies, ArrayList<String> yMovies){
+    static double cosSim(ArrayList<String> xList, ArrayList<String> yList){
 
-        int lenx = xMovies.size();
-        int leny = yMovies.size();
+        int lenx = xList.size();
+        int leny = yList.size();
 
         if(lenx == 0 || leny == 0){
             return 0;
         }
 
-        ArrayList<String> copyxMovies = new ArrayList<>(xMovies);
-        copyxMovies.retainAll(yMovies);
-        int sameNumber = yMovies.size();
+        ArrayList<String> copyxList = new ArrayList<>(xList);
+        copyxList.retainAll(yList);
+        int sameNumber = copyxList.size();
 
         return sameNumber / (Math.sqrt(lenx) * Math.sqrt(leny));
 

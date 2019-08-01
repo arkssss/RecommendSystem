@@ -1,35 +1,32 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
-
-class Person implements Comparable{
-
-    public String name;
-    public String age;
-
-    public Person(String name, String age){
-        this.name = name;
-        this.age = age;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Person p = (Person) o;
-        return this.name.compareTo(p.name);
-    }
-}
-
 public class main {
 
 
     public static void main(String[] args){
 
-         // read data
+        String UserID = "2";
+
         UserCF userCf = new UserCF();
-        System.out.println(userCf.getUserRecommed("2"));
+        System.out.println("--------------------------------For UserCF-----------------------");
+        System.out.println(userCf.getUserRecommed(UserID));
+        System.out.println("--------------------------------For UserCF-----------------------");
 
 
+        ItemCF itemCF = new ItemCF();
+        System.out.println("--------------------------------For ItemCF-----------------------");
+        System.out.println(itemCF.getRecommend(UserID));
+        System.out.println("--------------------------------For ItemCf-----------------------");
 
+
+        ContentBase CB = new ContentBase();
+        System.out.println("--------------------------------For ContentBase-----------------------");
+        System.out.println(CB.getContentRecommend(UserID));
+        System.out.println("--------------------------------For ContentBase-----------------------");
+
+
+        MixRecommend MR = new MixRecommend();
+        System.out.println("--------------------------------For MixRecommend-----------------------");
+        System.out.println(MR.getMixRecommemd(UserID));
+        System.out.println("--------------------------------For MixRecommend-----------------------");
     }
 
 

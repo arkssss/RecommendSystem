@@ -28,15 +28,14 @@ public class csvReader {
             String[] titleArr = titleStr.split(",");
 
             // add
-            for(int i=0; i<titleArr.length ;i++){ Title.add(titleArr[i]); }
+            for(int i=0; i<titleArr.length ;i++){Title.add(titleArr[i]);}
 
             //Content
             int len = titleArr.length;
             String tmpContentStr;
 
             // add content
-            while( (tmpContentStr = buffr.readLine()) != null){
-
+            while((tmpContentStr = buffr.readLine()) != null){
                 String[] tmpContentArr = tmpContentStr.split(",");
                 Content.add(tmpContentArr);
             }

@@ -1,54 +1,11 @@
 /*
 * 基于用户的协同过滤
 * */
+
 import java.util.*;
 
 
 public class UserCF extends RecommedBase{
-
-    class RecommendItem implements Comparable{
-        public String movieId;
-        public Double recommendMark;
-
-        RecommendItem(String movieId, Double recommendMark){
-            this.movieId = movieId;
-            this.recommendMark = recommendMark;
-        }
-
-        @Override
-        public String toString() {
-            return "Recommend Movie is : " + this.movieId + " , Mark is : "+this.recommendMark;
-        }
-
-        @Override
-        public int compareTo(Object o) {
-            RecommendItem ri = (RecommendItem) o;
-            return this.recommendMark > ri.recommendMark ? -1 : 1;
-        }
-    }
-
-
-
-    class UserMovie implements Comparable{
-        public String userId;
-        public String movieId;
-
-        UserMovie(String userId, String movieId){
-            this.userId = userId;
-            this.movieId = movieId;
-        }
-
-        @Override
-        public int compareTo(Object o) {
-            UserMovie um = (UserMovie) o;
-            if(!um.userId.equals(this.userId)){
-                return um.userId.compareTo(this.userId);
-            }else {
-                return um.movieId.compareTo(this.movieId);
-            }
-        }
-    }
-
 
 
     /* Ranking Sim Structure*/
@@ -72,8 +29,6 @@ public class UserCF extends RecommedBase{
     }
 
 
-
-
     /* 获得用户的临近K个用户 */
     private final int K = 10;
 
@@ -82,102 +37,28 @@ public class UserCF extends RecommedBase{
     private final int K_ITEM = 10;
 
 
+    /* ------------------------------------------For Ranking Data */
 
-    /* 存放所有的UserId */
-    private ArrayList<String> allUser  = new ArrayList<>();
+    private ArrayList<String> allUser = getAllUser();
 
+    private HashMap<String, ArrayList<String> > userRankingTable = getUserRankingTable() ;
 
+    private TreeMap<UserMovie, Double> userMovieRanking = getUserMovieRanking();
 
-    /*
-        保存用户评过分的电影Id
-        UserId => [movieId1, movieId2, ...];
-    */
-    private HashMap<String, ArrayList<String> > userRankingTable = new HashMap<>();
+    private HashMap<String, ArrayList<String> > userIntersection = getUserIntersection();
 
-
-
-    /*
-        用户 Id , 电影 Id , 对应出一个评分
-        [UserId, MovieId] => Rank
-    * */
-    private TreeMap<UserMovie, Double> userMovieRanking = new TreeMap<>();
-
-
-    /*
-        保存和用户 userId1 有相同电影的 用户集合
-        可以在计算 SimK 的的时候简化计算
-        userId => [userId1, userId2, ...]
-    */
-    private HashMap<String, ArrayList<String> > userIntersection = new HashMap<>();
+    /* ------------------------------------------For Ranking Data */
 
 
 
 
-    /* Save userRankingTable*/
-    private void saveUserRankingTable(){
 
-        Iterator<SingleRatings> it = myData.ratings.RatingsCollection.iterator();
-        while(it.hasNext()){
-            String tmpUserId = it.next().userId;
-            String movieId = it.next().movieId;
-            String rank = it.next().rating;
-
-            /* For userRankingTable*/
-            if(!userRankingTable.containsKey(tmpUserId)) {
-                // 新用户，放入新 ArrayList
-                userRankingTable.put(tmpUserId, new ArrayList<String>());
-                allUser.add(tmpUserId);
-            }
-            userRankingTable.get(tmpUserId).add(movieId);
-            userMovieRanking.put(new UserMovie(tmpUserId, movieId), new Double(rank));
-
-        }
-
-
-        /* For userIntersection 实现直接用 ArrayList 求交即可 */
-        int len = allUser.size();
-        for(int i=0; i< len-1 ;i++){
-
-            String User1 = allUser.get(i);
-            userIntersection.put(User1, new ArrayList<String>());
-
-            for(int j=i+1; j<len ;j++){
-                /* 获得 User1 & User2 */
-                String User2 = allUser.get(j);
-
-                /* 重新开批空间 防止改变userRankingTable */
-                ArrayList<String> movies1 = new ArrayList<>(userRankingTable.get(User1));
-                ArrayList<String> movies2 = new ArrayList<>(userRankingTable.get(User2));
-
-                movies1.retainAll(movies2);
-                if(movies1.size() != 0){
-                    // 有交集
-                    userIntersection.get(User1).add(User2);
-                }
-
-
-            }
-        }
-
-    }
-
-
-
-
-    /* init data */
-    private void init(){
-
-        saveUserRankingTable();
-
-    }
 
 
 
     /* 构造函数 */
     UserCF(){
-        System.out.println("User-based init....");
-        init();
-        System.out.println("User-based Start Work ....");
+        System.out.println("Start User-based");
     }
 
     /*

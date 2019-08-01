@@ -12,9 +12,11 @@ public class allData {
 
 
     private allData() {
+        System.out.println("Loading Data .......");
         links = new Links();
         movie = new Movies();
         ratings = new Ratings();
+        System.out.println("Data Have Been Loaded .....");
     }
 
     // 获得实例

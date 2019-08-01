@@ -23,11 +23,17 @@ public class Movies extends RowInCSV
             String[] tmpArr = it.next();
             String[] inputArr = new String[myTitle.length];
 
-            for (int i=0;i<myTitle.length; i++) {
-                if(i >= tmpArr.length) inputArr[i] = "";
-                else inputArr[i] = tmpArr[i];
-            }
+            //
+            int len = tmpArr.length;
+            for(int i=0; i<len ; i++){
 
+                if(i == 0) inputArr[i] = tmpArr[i];
+                else if(i == len -1) inputArr[2] = tmpArr[i];
+                else{
+                    inputArr[1] = inputArr[1] == null? tmpArr[i] : inputArr[1] + tmpArr[i];
+                }
+
+            }
             MoviesCollection.add(new SingleMovie(inputArr[0], inputArr[1], inputArr[2]));
         }
 
