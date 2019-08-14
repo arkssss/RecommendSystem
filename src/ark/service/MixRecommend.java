@@ -1,13 +1,15 @@
+package ark.service;
+
 import java.util.Iterator;
 import java.util.TreeSet;
 
 /*
-* 基于混合式的推荐系统
-* 基本策略是
-* 规定一个  K-领域的 半径。
-* 如果 ： 半径里面的用户过小， 则用 基于内容推荐
-* 如果 ： 半径里面用户多， 则用 基于用户
-* */
+ * 基于混合式的推荐系统
+ * 基本策略是
+ * 规定一个  K-领域的 半径。
+ * 如果 ： 半径里面的用户过小， 则用 基于内容推荐
+ * 如果 ： 半径里面用户多， 则用 基于用户
+ * */
 public class MixRecommend extends RecommedBase{
 
     /* 如果邻居小于5 则使用基于内容 */

@@ -1,9 +1,14 @@
+package ark.service;
+
+import ark.service.RecommedBase;
+import ark.util.MyUnti;
+
 import java.util.*;
 
 /*
-* 基于内容
-* */
-public class ContentBase extends RecommedBase{
+ * 基于内容
+ * */
+public class ContentBase extends RecommedBase {
 
     /* 新版本数据初始化方法 */
     /* 利用这种方式获取可以 很好的节约内存 */

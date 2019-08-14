@@ -1,6 +1,10 @@
+package ark.service;
+
 /*
-* 基于用户的协同过滤
-* */
+ * 基于用户的协同过滤
+ * */
+
+import ark.util.MyUnti;
 
 import java.util.*;
 
@@ -57,7 +61,7 @@ public class UserCF extends RecommedBase{
 
 
     /* 构造函数 */
-    UserCF(){
+    public UserCF(){
         System.out.println("Start User-based");
     }
 
@@ -98,13 +102,13 @@ public class UserCF extends RecommedBase{
 
 
     /*
-    * 获得推荐的 K 个 Item
-    * */
+     * 获得推荐的 K 个 Item
+     * */
     private void getRecommendItem(String userId, ArrayList<RankSim> SimKUser, TreeSet<RecommendItem> recommendItem){
         /* SimKUser 为降序*/
         /* 先算出来, 我们需要对多少电影进行计算
-        *  所有SimKUser 取并集， 再除去 userId 的 movies
-        * */
+         *  所有SimKUser 取并集， 再除去 userId 的 movies
+         * */
 
         Iterator<RankSim> it = SimKUser.iterator();
         ArrayList<String> unionMovies = new ArrayList<>();
@@ -145,14 +149,14 @@ public class UserCF extends RecommedBase{
 
 
     /*
-    * 获得和 userId 临近的 K 个用户 Id
-    * */
+     * 获得和 userId 临近的 K 个用户 Id
+     * */
     private void getSimKUser(String userId, ArrayList<RankSim> SimKUser){
 
         ArrayList<String> relatedUsers = userIntersection.get(userId);
         TreeSet<RankSim> ranking = new TreeSet<>();
 
-         /* 遍历 */
+        /* 遍历 */
         Iterator<String> it = relatedUsers.iterator();
         while(it.hasNext()){
             String curtUserId = it.next();

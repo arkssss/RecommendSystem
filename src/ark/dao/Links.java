@@ -1,13 +1,18 @@
+package ark.dao;
+
+import ark.domain.RowInCSV;
+import ark.domain.SingleLink;
+import ark.util.Printable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Links extends RowInCSV
-                    implements Printable
+        implements Printable
 {
 
-
     // read url
-    private static final String read_url = "movie_data/links.csv";
+    private static final String read_url = System.getProperty("evan.webapp")+ "Static/MovieLens/links.csv";
 
     // My title name
     private static final String[] myTitle = {"movieId", "imdbId", "tmdbId"};
@@ -19,7 +24,7 @@ public class Links extends RowInCSV
     /*
      *  通过 myUrl 构造 Links对象
      *
-    */
+     */
     Links(){
         super(myTitle, read_url);
 
@@ -51,36 +56,7 @@ public class Links extends RowInCSV
 }
 
 
-/*
-*
-*   Just one link
-* */
-class SingleLink{
 
-    //movieId,imdbId,tmdbId
-    private String movieId;
-
-
-    private String imdbId;
-
-
-    private String tmdbId;
-
-
-    // construst
-    SingleLink(String movieId, String imdbId, String tmdbId){
-        // upper 调用
-        this.imdbId = imdbId;
-        this.movieId = movieId;
-        this.tmdbId = tmdbId;
-
-    }
-
-    @Override
-    public String toString() {
-        return "movieId : " + this.movieId + " imdbId : " + this.imdbId + " tmdbId : " + this.tmdbId;
-    }
-}
 
 
 

@@ -1,13 +1,20 @@
+package ark.dao;
+
+import ark.domain.RowInCSV;
+import ark.domain.SingleMovie;
+import ark.util.Printable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 
 public class Movies extends RowInCSV
-                    implements Printable
+        implements Printable
 {
 
+
     // read url
-    private static final String read_url = "movie_data/movies.csv";
+    private static final String read_url = System.getProperty("evan.webapp")+ "Static/MovieLens/movies.csv";
 
     // My title name
     private static final String[] myTitle = {"movieId","title","genres"};
@@ -56,28 +63,4 @@ public class Movies extends RowInCSV
 }
 
 
-class SingleMovie{
 
-    public String movieId;
-
-    public String title;
-
-    public String genres;
-
-
-    SingleMovie(String movieId, String title, String genres){
-
-
-        this.movieId = movieId;
-
-        this.title = title;
-
-        this.genres = genres;
-
-    }
-
-    @Override
-    public String toString() {
-        return "movieId : " + this.movieId + " title : " + this.title + " genres : " + this.genres;
-    }
-}

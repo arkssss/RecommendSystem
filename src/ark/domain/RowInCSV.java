@@ -1,7 +1,10 @@
+package ark.domain;
+
 import java.util.ArrayList;
+import ark.util.csvReader;
 /*
-* 一个 CSV ROW 的共同 父类
-* */
+ * 一个 CSV ROW 的共同 父类
+ * */
 
 public class RowInCSV {
 
@@ -11,14 +14,13 @@ public class RowInCSV {
 
     public  ArrayList<String[]> tmp_content = new ArrayList<>();
 
-    RowInCSV(String[] title, String read_url){
-
+    public RowInCSV(String[] title, String read_url){
+        System.out.println(read_url);
         int len = title.length;
         for(int i=0; i<len ;i++){ Title.add(title[i]); }
 
         // read my CSV
         csvReader.readCSV(read_url, tmp_title, tmp_content);
-
 
         // CSV 不匹配
         if(!checkIsMyTitle(tmp_title)){throw new RuntimeException("CSV 不匹配");}

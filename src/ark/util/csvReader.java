@@ -1,3 +1,5 @@
+package ark.util;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -8,10 +10,10 @@ import java.util.ArrayList;
 public class csvReader {
 
     /*
-    *   return
-    *   @ ArrayList<String> Title 为 CSV 的 title
-    *   @ ArrayList<String[]> Content 为 CSV 的 内容
-    */
+     *   return
+     *   @ ArrayList<String> Title 为 CSV 的 title
+     *   @ ArrayList<String[]> Content 为 CSV 的 内容
+     */
     public static void readCSV(String url,  ArrayList<String> Title, ArrayList<String[]> Content){
 
 
@@ -19,7 +21,7 @@ public class csvReader {
 
         // read file
         try {
-             fr = new FileReader(url);
+            fr = new FileReader(url);
             // 读取成功
             BufferedReader buffr = new BufferedReader(fr);
 
@@ -50,10 +52,10 @@ public class csvReader {
 
         finally {
             if(fr != null){
-            try {
-                fr.close();
-            }catch (IOException e){
-                System.out.println("Close Fail");
+                try {
+                    fr.close();
+                }catch (IOException e){
+                    System.out.println("Close Fail");
                 }
             }
         }

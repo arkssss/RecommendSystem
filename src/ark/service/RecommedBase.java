@@ -1,16 +1,20 @@
+package ark.service;
 /*
-* 所有推荐算法的夫类
-* */
+ * 所有推荐算法的夫类
+ * */
 
-import java.io.BufferedWriter;
+import ark.dao.allData;
+import ark.domain.SingleMovie;
+import ark.domain.SingleRatings;
+
 import java.util.*;
 
-public class RecommedBase {
+public class RecommedBase{
 
     /*
-    * 内部类
-    * */
-    class UserMovie implements Comparable{
+     * 内部类
+     * */
+    public class UserMovie implements Comparable{
         public String userId;
         public String movieId;
 
@@ -31,7 +35,7 @@ public class RecommedBase {
     }
 
 
-    class RecommendItem implements Comparable{
+    public class RecommendItem implements Comparable{
         public String movieId;
         public Double recommendMark;
 
@@ -110,12 +114,11 @@ public class RecommedBase {
 
 
 
-
-     /*
-        保存 同时看过一个电影的用户集合 (ItemCF)
-        movieId => [userId1, userId2, ...]
-     */
-     private static HashMap<String, ArrayList<String>> movieAudience = new HashMap<>();
+    /*
+       保存 同时看过一个电影的用户集合 (ItemCF)
+       movieId => [userId1, userId2, ...]
+    */
+    private static HashMap<String, ArrayList<String>> movieAudience = new HashMap<>();
 
 
 
@@ -131,9 +134,9 @@ public class RecommedBase {
 
     // ---------------------------------------- For movies 数据集
     /*
-    *  保存一个电影对应的 tags
-    *  movieId => [tag1, tag2, ...]
-    * */
+     *  保存一个电影对应的 tags
+     *  movieId => [tag1, tag2, ...]
+     * */
     // 注意初始化的时候 别写为 null
     private static HashMap<String, ArrayList<String>> movieTags = new HashMap<>();
 
@@ -390,3 +393,4 @@ public class RecommedBase {
 
 
 }
+

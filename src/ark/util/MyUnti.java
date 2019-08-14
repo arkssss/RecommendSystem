@@ -1,12 +1,14 @@
+package ark.util;
+
 import java.util.ArrayList;
 
 // 工具类
 public class MyUnti {
 
-     /*
-        皮尔斯相识度
-        返回 皮尔斯 相似度
-     */
+    /*
+       皮尔斯相识度
+       返回 皮尔斯 相似度
+    */
     static double pearsonSim(ArrayList<Integer> x, ArrayList<Integer> y){
 
         int lenX = x.size();
@@ -47,7 +49,7 @@ public class MyUnti {
         计算方法如下：
         Nums(xList 交 yList) / Sqrt(Nums(xList) * Nums(yList))
     */
-    static double cosSim(ArrayList<String> xList, ArrayList<String> yList){
+    public static double cosSim(ArrayList<String> xList, ArrayList<String> yList){
 
         int lenx = xList.size();
         int leny = yList.size();

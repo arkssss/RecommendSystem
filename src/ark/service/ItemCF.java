@@ -1,9 +1,14 @@
+package ark.service;
+
+import ark.service.RecommedBase;
+import ark.util.MyUnti;
+
 import java.util.*;
 
 /*
-* 基于物品的推荐
-* */
-public class ItemCF extends RecommedBase{
+ * 基于物品的推荐
+ * */
+public class ItemCF extends RecommedBase {
 
 
 
@@ -123,8 +128,8 @@ public class ItemCF extends RecommedBase{
         /* 计算相似相似度，返回前 K 名*/
         int len = intractMovie.size();
         for(int i =0 ;i<len; i++){
-              String curtMovie = intractMovie.get(i);
-              mySet.add(new movieSim(curtMovie, MyUnti.cosSim(movieAudience.get(movieId), movieIntersection.get(curtMovie))));
+            String curtMovie = intractMovie.get(i);
+            mySet.add(new movieSim(curtMovie, MyUnti.cosSim(movieAudience.get(movieId), movieIntersection.get(curtMovie))));
         }
 
         /* 遍历前K个mySet */

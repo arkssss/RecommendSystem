@@ -1,12 +1,18 @@
+package ark.dao;
+
+import ark.domain.RowInCSV;
+import ark.domain.SingleRatings;
+import ark.util.Printable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Ratings extends RowInCSV
-                        implements Printable
+        implements Printable
 {
 
     // read url
-    private static final String read_url = "movie_data/ratings.csv";
+    private static final String read_url = System.getProperty("evan.webapp")+ "Static/MovieLens/ratings.csv";
 
     // My title name
     private static final String[] myTitle = {"userId","movieId","rating", "timestamp"};
@@ -52,28 +58,3 @@ public class Ratings extends RowInCSV
 
 
 
-class SingleRatings{
-//    userId,movieId,rating,timestamp
-    public String userId;
-
-    public String movieId;
-
-    public String rating;
-
-    public String timestamp;
-
-
-    SingleRatings(String userId, String movieId, String rating, String timestamp){
-
-        this.userId = userId;
-        this.movieId = movieId;
-        this.rating = rating;
-        this.timestamp = timestamp;
-
-    }
-
-    @Override
-    public String toString() {
-        return "userId :" + userId + " movieid : " + movieId + " rating : " + rating + " timestamp: " + timestamp;
-    }
-}

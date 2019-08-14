@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+    <!-- 包扫描 -->
+    <context:component-scan base-package="ark.controller"></context:component-scan>
+
+    <!-- 加入SpringMVC 注解驱动 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- 自动拼接视图的 前缀和后缀 -->
+    <bean id="InternalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置前缀 & 后缀-->
+        <property name="prefix" value="WEB-CONTENT/pages/"></property>
+    </bean>
+</beans>
